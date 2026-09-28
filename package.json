@@ -1,6 +1,6 @@
 {
-  "name": "pqrng",
-  "version": "0.1.0",
+  "name": "@agenticvalley/pqrng",
+  "version": "0.1.1",
   "description": "Post-quantum-only cryptographically secure random number generator. A reseedable SP 800-90A-style DRBG built on the SHAKE256 XOF (FIPS-202) — the same Keccak sponge that underpins ML-KEM/ML-DSA — with an optional ML-KEM (FIPS-203) lattice entropy-conditioning stage. No AES-CTR-DRBG, no weak-Grover-margin primitives.",
   "type": "module",
   "main": "./dist/cjs/index.js",

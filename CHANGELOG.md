@@ -1,8 +1,16 @@
 # Changelog
 
-All notable changes to `pqrng` are documented in this file. The
+All notable changes to `@agenticvalley/pqrng` are documented in this file. The
 format follows the Keep a Changelog convention, and this project adheres to
 Semantic Versioning.
+
+## [0.1.1] - 2026-09-28
+
+### Changed
+
+- **Docs.** Replaced the README's Mermaid pipeline diagram with an ASCII
+  equivalent so the "How a value is produced" section renders correctly on npm
+  (whose README viewer does not support Mermaid), not just on GitHub.
 
 ## [0.1.0] - 2026-09-27
 
@@ -37,8 +45,8 @@ Semantic Versioning.
   `reseed(additionalInput?)`, a non-sensitive `stats()` snapshot, and `destroy()`
   with best-effort state zeroization.
 - **Dual ESM + CommonJS packaging.** Ships both an ES-module and a CommonJS
-  build with per-format type declarations, so `import pqrng from 'pqrng'` and
-  `const pqrng = require('pqrng')` both work on any supported Node version.
+  build with per-format type declarations, so `import pqrng from '@agenticvalley/pqrng'` and
+  `const pqrng = require('@agenticvalley/pqrng')` both work on any supported Node version.
 - **Typed error hierarchy** with stable `ErrorCode`s: `InvalidArgumentError`,
   `EmptyRangeError`, `UnsupportedStrengthError`, `InvalidSeedError`,
   `EntropySourceError`, and `GeneratorStateError`.
