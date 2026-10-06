@@ -20,7 +20,7 @@ import {
 } from '../src/index.js';
 import { bytesToHex } from '../src/utils/index.js';
 
-console.log('=== pqrng — basics ===\n');
+console.log('=== @agenticvalley/pqrng — basics ===\n');
 
 console.log('randomBytes(16) :', bytesToHex(randomBytes(16)));
 console.log('randomUint32()  :', randomUint32());

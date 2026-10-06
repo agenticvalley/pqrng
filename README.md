@@ -1,4 +1,4 @@
-# pqrng
+# @agenticvalley/pqrng
 
 > A post-quantum-only cryptographically secure random number generator. The
 > familiar `random*` surface — bytes, integers, ranges, floats, tokens, UUIDs,
@@ -38,13 +38,17 @@ post-quantum standards rather than bolting on a separate one.
 
 ## How a value is produced
 
-```mermaid
-flowchart LR
-  OS1["OS CSPRNG"] --> KEM["ML-KEM<br/>keygen + encapsulate<br/>(lattice)"]
-  OS2["OS CSPRNG"] --> COND
-  KEM -->|sharedSecret ‖ ciphertext| COND["SHAKE256<br/>conditioning"]
-  COND -->|seed| DRBG["SHAKE256 Hash_DRBG<br/>(SP 800-90A state machine)"]
-  DRBG -->|uniform bytes| API["unbiased integers · floats ·<br/>strings · UUIDs · shuffles"]
+```text
+  OS CSPRNG  ─┐
+              ├─▶ ML-KEM encapsulation ─▶ SHAKE256 conditioning ─▶ seed
+  OS CSPRNG  ─┘        (lattice)                (FIPS-202)          │
+                                                                   ▼
+                                    SHAKE256 Hash_DRBG  ◀──────────┘
+                                    (SP 800-90A state machine)
+                                                │
+                                                ▼
+                           uniform bytes ─▶ unbiased integers / floats /
+                                            strings / UUIDs / shuffles
 ```
 
 1. **Entropy** — the operating-system CSPRNG (`crypto.getRandomValues`) is the
@@ -63,13 +67,13 @@ flowchart LR
 ## Install
 
 ```bash
-npm install pqrng
+npm install @agenticvalley/pqrng
 ```
 
 ## Quick start
 
 ```ts
-import { randomInt, randomString, uuidV4, shuffle } from 'pqrng';
+import { randomInt, randomString, uuidV4, shuffle } from '@agenticvalley/pqrng';
 
 randomInt(1, 7); // a fair d6: an integer in 1..6
 randomString(21); // a URL-safe token
@@ -80,7 +84,7 @@ shuffle(['a', 'b', 'c']); // an unbiased permutation
 Prefer a single namespace import? The default export bundles everything:
 
 ```ts
-import pqrng from 'pqrng';
+import pqrng from '@agenticvalley/pqrng';
 
 pqrng.randomBytes(32);
 pqrng.randomBase64Url(16);
@@ -92,14 +96,14 @@ pqrng.randomBase64Url(16);
 on any Node version — no `import()` gymnastics:
 
 ```cjs
-const pqrng = require('pqrng');
+const pqrng = require('@agenticvalley/pqrng');
 
 pqrng.uuid(); // a random UUID (v4)
 pqrng.randomInt(1, 7); // a fair d6
 pqrng.randomBytes(32); // 32 secure random bytes
 ```
 
-Named requires work as well: `const { uuid, randomInt } = require('pqrng');`.
+Named requires work as well: `const { uuid, randomInt } = require('@agenticvalley/pqrng');`.
 
 ## A configured instance
 
@@ -108,7 +112,7 @@ a different strength, a custom entropy source, a fixed seed — build one with
 `createGenerator`:
 
 ```ts
-import { createGenerator, Alphabets } from 'pqrng';
+import { createGenerator, Alphabets } from '@agenticvalley/pqrng';
 
 const rng = createGenerator({ strength: 192 });
 
@@ -123,7 +127,7 @@ Pass a fixed `seed` to get a fully reproducible stream — ideal for tests,
 simulations, and reproducible sampling. **Never** use it for real secrets.
 
 ```ts
-import { createGenerator } from 'pqrng';
+import { createGenerator } from '@agenticvalley/pqrng';
 
 const seed = new TextEncoder().encode('fixed-test-seed');
 const a = createGenerator({ seed });

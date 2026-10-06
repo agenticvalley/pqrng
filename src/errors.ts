@@ -61,7 +61,7 @@ export interface PqRngErrorOptions {
 }
 
 /**
- * Base class for every error raised by `pqrng`.
+ * Base class for every error raised by `@agenticvalley/pqrng`.
  *
  * @example Branch on a stable code
  * ```ts

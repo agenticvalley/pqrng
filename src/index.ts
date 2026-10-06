@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * # pqrng
+ * # @agenticvalley/pqrng
  *
  * **A post-quantum-only cryptographically secure random number generator.** The
  * ergonomic `random*` surface you already reach for — bytes, integers, ranges,
@@ -48,7 +48,7 @@
  *
  * @example Zero-setup facade
  * ```ts
- * import { randomInt, randomString, uuidV4, shuffle } from 'pqrng';
+ * import { randomInt, randomString, uuidV4, shuffle } from '@agenticvalley/pqrng';
  *
  * randomInt(1, 7);              // a fair d6: an integer in 1..6
  * randomString(21);            // a URL-safe token, e.g. "Xa3…"
@@ -58,7 +58,7 @@
  *
  * @example A configured instance
  * ```ts
- * import { createGenerator } from 'pqrng';
+ * import { createGenerator } from '@agenticvalley/pqrng';
  *
  * const rng = createGenerator({ strength: 192 });
  * const key = rng.randomBytes(32);
@@ -67,7 +67,7 @@
  *
  * @example Reproducible (deterministic) mode — for tests only
  * ```ts
- * import { createGenerator } from 'pqrng';
+ * import { createGenerator } from '@agenticvalley/pqrng';
  *
  * const seed = new TextEncoder().encode('fixed-test-seed');
  * const a = createGenerator({ seed });
@@ -178,7 +178,7 @@ export type { Clock } from './utils/time.js';
 // --- Default (namespace) export ---------------------------------------------
 /**
  * Everything bundled as one object, so you can `import pqrng from
- * 'pqrng'` and call `pqrng.randomInt(...)`, `pqrng.uuidV4(...)`,
+ * '@agenticvalley/pqrng'` and call `pqrng.randomInt(...)`, `pqrng.uuidV4(...)`,
  * `pqrng.createGenerator(...)`, and so on — no named imports required.
  */
 const pqrng = {
